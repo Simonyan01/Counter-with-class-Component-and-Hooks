@@ -8,6 +8,7 @@
 //         super();
 //         this.state = {
 //             count: 0,
+//             calculation: 0
 //         }
 //         this.increment = this.increment.bind(this);
 //         this.decrement = this.decrement.bind(this);
@@ -17,30 +18,29 @@
 //     increment() {
 //         this.setState(previousValue => ({
 //             count: previousValue.count + 1,
+//             calculation: previousValue.calculation + 1 * 2
 //         }));
 //     }
 
 //     decrement() {
 //         this.setState(previousValue => ({
 //             count: previousValue.count - 1,
+//             calculation: previousValue.calculation - 1 / 2
+
 //         }));
 //     }
 
 //     reset() {
 //         this.setState({
-//             count: 0
+//             count: 0,
+//             calculation: 0
 //         });
 //     }
-// componentDidMount() {
-//     document.title = `You clicked ${this.state.count} times`;
-// }
-// componentDidUpdate() {
-//     document.title = `You clicked ${this.state.count} times`;
-// }
+
 //     render() {
 //         return (
 //             <div className="button-container">
-//                 <h1>You clicked {this.state.count} times</h1>
+//                 <h1>You clicked {this.state.count} times and got it {this.state.calculation}</h1>                
 //                 <button className="addButton" onClick={this.increment}>+</button>
 //                 <button className="subtractButton" onClick={this.decrement}>-</button>
 //                 <button className="resetButton" onClick={this.reset}>Reset</button>
@@ -54,8 +54,8 @@
 
 // Counter with Hooks
 
-
 import React, { useState, useEffect } from "react";
+import './Counter.css'
 
 export default function Counter() {
     const [count, setCount] = useState(0);
@@ -67,7 +67,7 @@ export default function Counter() {
 
     useEffect(() => {
         setCalculation(() => count * 2); //Multiply my count
-      }, [count]);
+    }, [count]);
     return (
         <div>
             <h1>You clicked {count} times and got it {calculation}</h1>
@@ -75,7 +75,7 @@ export default function Counter() {
                 <button className="addButton" onClick={() => setCount(count + 1)}>
                     +
                 </button>
-                <button className="subtractButton" onClick={() => setCount(count - 1)}>
+                <button className="subtractButton" onClick={() => setCount(count - 1 )}>
                     -
                 </button>
                 <button className="resetButton" onClick={reset}>
