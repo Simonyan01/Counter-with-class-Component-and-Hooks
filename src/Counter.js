@@ -1,64 +1,87 @@
-import React, { Component } from 'react';
-import './Counter.css';
+// Counter with Class Components
 
-class Counter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            count: 0,
-        }
-        this.increment = this.increment.bind(this);
-        this.decrement = this.decrement.bind(this);
-        this.reset = this.reset.bind(this)
-    }
+// import React, { Component } from 'react';
+// import './Counter.css';
 
-    increment() {
-        this.setState(previousValue => ({
-            count: previousValue.count + 1,
-        }));
-    }
+// class Counter extends Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             count: 0,
+//         }
+//         this.increment = this.increment.bind(this);
+//         this.decrement = this.decrement.bind(this);
+//         this.reset = this.reset.bind(this)
+//     }
 
-    decrement() {
-        this.setState(previousValue => ({
-            count: previousValue.count - 1,
-        }));
-    }
+//     increment() {
+//         this.setState(previousValue => ({
+//             count: previousValue.count + 1,
+//         }));
+//     }
 
-    reset() {
-        this.setState({
-            count: 0
-        });
-    }
-    render() {
-        return (
-            <div className="button-container">
-                <h1>Counter:{this.state.count}</h1>
-                <button className="addButton" onClick={this.increment}>+</button>
-                <button className="subtractButton" onClick={this.decrement}>-</button>
-                <button className="resetButton" onClick={this.reset}>Reset</button>
-            </div>
-        );
-    }
-}
+//     decrement() {
+//         this.setState(previousValue => ({
+//             count: previousValue.count - 1,
+//         }));
+//     }
 
-export default Counter;
-
-
-// export default function Counter() {
-//   return (
-//     <div>
-//       <h1>Counter:{count}</h1>
-//       <div className="button-container">
-//         <button className="addButton" onClick={increase}>
-//           +
-//         </button>
-//         <button className="subtractButton" onClick={decrease}>
-//           -
-//         </button>
-//         <button className="resetButton" onClick={reset}>
-//           Reset
-//         </button>
-//       </div>
-//     </div>
-//   );
+//     reset() {
+//         this.setState({
+//             count: 0
+//         });
+//     }
+// componentDidMount() {
+//     document.title = `You clicked ${this.state.count} times`;
 // }
+// componentDidUpdate() {
+//     document.title = `You clicked ${this.state.count} times`;
+// }
+//     render() {
+//         return (
+//             <div className="button-container">
+//                 <h1>You clicked {this.state.count} times</h1>
+//                 <button className="addButton" onClick={this.increment}>+</button>
+//                 <button className="subtractButton" onClick={this.decrement}>-</button>
+//                 <button className="resetButton" onClick={this.reset}>Reset</button>
+//             </div>
+//         );
+//     }
+// }
+
+// export default Counter;
+
+
+// Counter with Hooks
+
+
+import React, { useState, useEffect } from "react";
+
+export default function Counter() {
+    const [count, setCount] = useState(0);
+    const [calculation, setCalculation] = useState(0);
+
+    const reset = () => {
+        setCount(0);
+    };
+
+    useEffect(() => {
+        setCalculation(() => count * 2); //Multiply my count
+      }, [count]);
+    return (
+        <div>
+            <h1>You clicked {count} times and got it {calculation}</h1>
+            <div className="button-container">
+                <button className="addButton" onClick={() => setCount(count + 1)}>
+                    +
+                </button>
+                <button className="subtractButton" onClick={() => setCount(count - 1)}>
+                    -
+                </button>
+                <button className="resetButton" onClick={reset}>
+                    Reset
+                </button>
+            </div>
+        </div>
+    );
+}
