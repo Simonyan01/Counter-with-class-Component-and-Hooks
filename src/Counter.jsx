@@ -25,7 +25,7 @@ class Counter extends Component {
     decrement() {
         this.setState(previousValue => ({
             count: previousValue.count - 1,
-            calculation: previousValue.calculation - 1 / 2
+            calculation: previousValue.calculation / 2
 
         }));
     }
